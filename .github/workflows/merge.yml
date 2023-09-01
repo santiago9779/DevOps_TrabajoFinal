@@ -1,0 +1,26 @@
+name: Merge
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:  
+  post_merge_actions:
+    runs-on: ubuntu-latest
+    needs: [sonarcloud_scan]
+    steps:
+      - name: Print Branch and Name
+        run: |
+          if [[ ${{ github.ref }} == 'refs/heads/dev' ]]; then
+            echo "rama: ${{ github.ref }}  nombre: ${{ secrets.ALUMNO }}"
+          elif [[ ${{ github.ref }} == 'refs/heads/qa' ]]; then
+            echo "rama: ${{ github.ref }}  email: ${{ secrets.EMAIL }}"
+          elif [[ ${{ github.ref }} == 'refs/heads/prod' ]]; then
+            echo "rama: ${{ github.ref }}  nombre: ${{ secrets.ALUMNO }}  email: ${{ secrets.EMAIL }}"
+          fi
+      - name: Curl and Print Result
+        run: |
+          curl_result=$(curl -s ${{ secrets.URL }})
+          echo "rama: ${{ github.ref }}  curl: $curl_result"
