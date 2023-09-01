@@ -6,6 +6,10 @@ on:
       - main
       - develop
       - feature/*
+  pull_request:
+      types: [openned, syncronize]
+      
+
 
 jobs:
   sonarcloud:
