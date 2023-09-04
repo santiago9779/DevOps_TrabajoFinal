@@ -6,7 +6,7 @@ on:
   # a pull request.
   push:
     branches:
-      - main
+      - dev
   pull_request:
       types: [opened, synchronize]
 jobs:
