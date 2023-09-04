@@ -11,7 +11,7 @@ on:
 jobs:  
   post_merge_actions:
     runs-on: ubuntu-latest
-    needs: [sonarcloud_scan]
+    # needs: [sonarcloud_scan]
     steps:
       - name: Print Branch and Name
         run: |
